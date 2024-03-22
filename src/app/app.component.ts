@@ -5,8 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: ``,
-  styles: ``
+  template: `<router-outlet></router-outlet>`,
 })
 export class AppComponent {
   title = 'qpuc';
