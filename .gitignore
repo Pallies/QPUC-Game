@@ -41,5 +41,5 @@ testem.log
 .DS_Store
 Thumbs.db
 /src/assets/videos/
-/src/assets/audios/
 /src/assets/images/
+/src/assets/audios/
