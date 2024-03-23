@@ -1,0 +1,53 @@
+
+.container{
+  filter: drop-shadow(10px 0 1px #027198);
+}
+.desk {
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  height: 50%;
+  width: 17rem;
+
+  background: linear-gradient(to bottom, #0281ad 10%, #30baf6 20%,#00d0ff 30%,#7df4fc 40%,#7df4fc 60%, #00d0ff 70%, #299cce 80%, #0281ad 90%);
+
+  &.winner{
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    background: rgb(74, 78, 196) 95%!important;
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+.card {
+  background-color: rgba(137, 195, 235, 1);
+  &.winner{
+    background-color: rgb(255, 214, 0);
+  }
+  & [mat-card-avatar] {
+    margin-left: 1em;
+    background-position: center;
+    background-size: 300%;
+    transform: scale(1.5);
+  }
+
+  & mat-card-header {
+    width: 100%;
+    justify-self: center;
+  }
+
+  & .text {
+    margin-left: 2rem;
+    justify-self: center;
+    text-align: center;
+  }
+}
+
+button {
+  &:nth-child(9) {
+    margin-top: 2rem;
+  }
+
+  margin: 0.5em 20%;
+}

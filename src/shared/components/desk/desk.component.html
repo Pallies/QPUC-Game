@@ -1,0 +1,17 @@
+<div class="container">
+  <button class="desk" (click)="winning()" [ngClass]="_winnerDesk()" [disabled]="_winnerAllDesk()">
+    <div class="desk-box">
+      @for (box of (deskService.points$()); track $index) {
+        <button mat-raised-button [color]="box?'accent':'primary'" [tabIndex]="0" [disabled]="_isDisabled()"></button>
+      }
+      <mat-card class="card" [ngClass]="_winnerDesk()">
+        <mat-card-header class="box">
+          <div mat-card-avatar [style.background-image]="user.avatarUrl"></div>
+          <mat-card-title class="text">{{ user.name }}</mat-card-title>
+          <mat-card-subtitle class="text nickname">{{ user.nickname }}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </button>
+</div>
+
