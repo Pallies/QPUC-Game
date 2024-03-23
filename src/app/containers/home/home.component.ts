@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
+import {NAVIGATION_PATH} from "src/_core/models/enums/path-navigation.enum"
+
 
 @Component({
-  selector: 'app-home',
   standalone: true,
   imports: [
     MatButton,
@@ -22,7 +23,7 @@ import {RouterLink} from "@angular/router";
       <div class="button-box">
         <button class="button-action"
                 mat-raised-button color="accent"
-                routerLink="/home/select-players">
+                [routerLink]="Nav.HOME_SELECT_PLAYERS">
           Start
           <span>
           <mat-icon class="mat-icon-rtl-mirror icon" fontIcon="navigate_next"/>
@@ -35,5 +36,6 @@ import {RouterLink} from "@angular/router";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-title=document.title.toUpperCase()+'...'
+  title = document.title.toUpperCase() + '...';
+  protected readonly Nav = NAVIGATION_PATH ;
 }

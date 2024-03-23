@@ -1,10 +1,10 @@
 import {Routes} from '@angular/router';
-import {Path_Name as Path} from "../_core/models/types/navigation-path";
+import {PATH_NAME as Path } from 'src/_core/models/enums/path-name.enum';
 
 export const routes: Routes = [
   {
     path: Path.EMPTY,
-    redirectTo: 'home',
+    redirectTo: Path.HOME,
     pathMatch: "full"
   },
   {
