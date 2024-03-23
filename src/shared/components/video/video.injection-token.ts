@@ -6,5 +6,5 @@ import {PATH_SRC} from "../../../_core/models/enums/path-files";
 export const VIDEO_PATH = new InjectionToken<IVideo>("path",
   {
     providedIn: "root",
-    factory: () => new Video(PATH_NAME.INTRO, PATH_SRC.INTRO, PATH_NAME.EMPTY)
+    factory: () => new Video( PATH_NAME.GENERIQUE, PATH_SRC.INTRO, PATH_NAME.HOME)
   })

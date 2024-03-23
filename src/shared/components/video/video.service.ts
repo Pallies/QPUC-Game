@@ -23,7 +23,7 @@ export class VideoService {
 
   destroyConfig(data: IVideo) {
     this._video.onended = (e) => {
-      if (data.routes!==PATH_NAME.INTRO) {
+      if (data.routes!==PATH_NAME.GENERIQUE) {
         this._video.hidden = true;
         this.router.navigate([data.next])
       }
