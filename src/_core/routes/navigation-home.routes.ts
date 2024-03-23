@@ -1,19 +1,19 @@
 import {Routes} from "@angular/router";
 import {HomeComponent} from "../../app/containers/home/home.component";
-import {SelectPlayersComponent} from "../../app/containers/home/select-players.component";
-import {Path_Name as  Path} from "../models/types/navigation-path";
+import {SelectPlayersContainer} from "../../app/containers/home/select-players.container";
+import {PATH_NAME as  PATH} from "_core/models/enums/path-name.enum";
 export default [
   {
-    path: Path.EMPTY,
+    path: PATH.EMPTY,
     component: HomeComponent
   },
   {
-    path: Path.INTRO,
+    path: PATH.INTRO,
     component: HomeComponent
   },
   {
-    path: Path.SELECT_PLAYERS,
-    component: SelectPlayersComponent
+    path: PATH.SELECT_PLAYERS,
+    component: SelectPlayersContainer
   }
 ] as Routes
 ;

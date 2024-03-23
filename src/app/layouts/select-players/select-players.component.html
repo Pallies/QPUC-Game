@@ -1,0 +1,42 @@
+<div cdkDropListGroup class="container">
+  <div class="box">
+    <h2>LISTE</h2>
+    <div
+      #cdkDropList1
+      cdkDropList
+      [cdkDropListData]="reserves$()"
+      class="box-list"
+      (cdkDropListDropped)="drop($event)">
+      @for (item of reserves$(); track item) {
+        <div class="box-line" cdkDrag>{{ item.name }}</div>
+      }
+    </div>
+  </div>
+
+  <div class="box">
+    <h2>
+      PARTICIPANTS
+    </h2>
+
+    <div
+      #cdkDropList2
+      cdkDropList
+      [cdkDropListData]="players$()"
+      class="box-list"
+      (cdkDropListDropped)="players$().length < 4?drop($event):''">
+      @for (item of players$(); track item) {
+        <div class="box-line" cdkDrag>{{ item.name }}</div>
+      }
+    </div>
+    @if (players$().length == 4) {
+      <button
+        class="play"
+        mat-flat-button
+        (click)="savePlayer()"
+        color="accent">
+        JOUER
+        <mat-icon fontIcon="arrow_forward"></mat-icon>
+      </button>
+    }
+  </div>
+</div>

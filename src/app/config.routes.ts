@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {Path_Name as Path} from "../_core/models/types/navigation-path";
+import {PATH_NAME as Path } from '_core/models/enums/path-name.enum';
 
 export const routes: Routes = [
   {
@@ -9,6 +9,6 @@ export const routes: Routes = [
   },
   {
     path: Path.HOME,
-    loadChildren: () => import('src/_core/routes/navigation-home.routes')
+    loadChildren: () => import('_core/routes/navigation-home.routes')
   }
 ];
