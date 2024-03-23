@@ -4,12 +4,18 @@ export interface IVideo {
   next: string;
 }
 
-
 export class Video implements IVideo {
+  routes: string;
+  next: string;
+  src: string;
 
   constructor(
-    public routes: string,
-    public src: string,
-    public next: string) {
+    routes: any,
+    src: any,
+    next: any) {
+    this.routes = routes.toString()
+    this.src = src.toString()
+    this.next = next.toString()
   }
+
 }

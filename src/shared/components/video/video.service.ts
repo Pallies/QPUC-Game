@@ -25,7 +25,7 @@ export class VideoService {
   destroyConfig(data: IVideo) {
     this._video.onended = (e) => {
       this._end$.set(true);
-      if (data.routes !== PATH_NAME.GENERIQUE) {
+      if (data.routes !== PATH_NAME.GENERIC) {
         this.closed(data);
       }
     };
@@ -36,5 +36,6 @@ export class VideoService {
       this._video.hidden = true;
       this.router.navigate([data.next])
     }
+      this._end$.set(false);
   }
 }
