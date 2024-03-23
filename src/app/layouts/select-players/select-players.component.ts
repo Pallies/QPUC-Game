@@ -11,7 +11,7 @@ import {MatButton} from "@angular/material/button";
 import {IUser} from "../../../_core/models/types/user.model";
 import {MatIcon} from "@angular/material/icon";
 import {PlayerAll} from "../../../_core/models/types/player.model";
-import {StoreService} from "../../shared/store.service";
+import {PlayerStoreService} from "../../../shared/store/player-store.service";
 import {Router} from "@angular/router";
 import {PATH_NAME} from "../../../_core/models/enums/path-name.enum";
 import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum";
@@ -32,7 +32,7 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
 export class SelectPlayersComponent implements OnInit {
   protected readonly NAV = NAVIGATION_PATH;
 
-  storeService = inject(StoreService);
+  storeService = inject(PlayerStoreService);
   router = inject(Router);
   reserves$ = signal<IUser[]>([...PlayerAll]);
   players$ = signal<IUser[]>([]);

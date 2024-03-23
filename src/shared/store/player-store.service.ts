@@ -5,7 +5,7 @@ import {IUser} from "../../_core/models/types/user.model";
 @Injectable({
   providedIn: 'root'
 })
-export class StoreService {
+export class PlayerStoreService {
   protected _players = new BehaviorSubject<IUser[]>([])
 
   init():void{
