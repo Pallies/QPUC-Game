@@ -5,4 +5,5 @@ export enum PATH_NAME{
   INTRO='intro',
   GENERIQUE='générique',
   SELECT_PLAYERS='choix-joueurs',
+  WINNING_POINTS='points-gagnants'
 }
