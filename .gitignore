@@ -43,3 +43,4 @@ Thumbs.db
 /src/assets/videos/
 /src/assets/images/
 /src/assets/audios/
+/src/_core/models/types/player.model.ts
