@@ -8,7 +8,7 @@ import {VIDEO_PATH} from "./video.injection-token";
   standalone: true,
   imports: [],
   template: `
-    <div class="center">
+    <div class="center" (click)="following()">
       <video #videoRef id="transition">
         <source [src]="src" type="video/mp4">
       </video>
@@ -40,5 +40,8 @@ export class VideoComponent {
 
   ngAfterViewInit(): void {
     this.#video.play();
+  }
+  following() {
+    this.#video.closed(this.#videoPath)
   }
 }

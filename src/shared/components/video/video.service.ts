@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {Router} from "@angular/router";
 import {IVideo} from "../../../_core/models/types/video.model";
 import {PATH_NAME} from "../../../_core/models/enums/path-name.enum";
@@ -9,7 +9,8 @@ import {PATH_NAME} from "../../../_core/models/enums/path-name.enum";
 export class VideoService {
 
   _video!: HTMLMediaElement;
-  router=inject(Router);
+  router = inject(Router);
+  _end$ = signal<boolean>(false);
 
   init(video: HTMLMediaElement, data: IVideo) {
     this._video = video;
@@ -23,10 +24,17 @@ export class VideoService {
 
   destroyConfig(data: IVideo) {
     this._video.onended = (e) => {
-      if (data.routes!==PATH_NAME.GENERIQUE) {
-        this._video.hidden = true;
-        this.router.navigate([data.next])
+      this._end$.set(true);
+      if (data.routes !== PATH_NAME.GENERIQUE) {
+        this.closed(data);
       }
     };
+  }
+
+  closed(data: IVideo) {
+    if (this._end$()) {
+      this._video.hidden = true;
+      this.router.navigate([data.next])
+    }
   }
 }

@@ -7,7 +7,7 @@ import {SelectPlayersComponent} from "../../layouts/select-players/select-player
     SelectPlayersComponent,
   ],
   template: `
-    <qpuc-select-players></qpuc-select-players>
+    <qpuc-select-players/>
   `
 })
 export class SelectPlayersContainer {
