@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import {VideoComponent} from "../../../shared/components/video/video.component";
 
 @Component({
   selector: 'qpuc-generic',
   standalone: true,
-  imports: [],
+  imports: [
+    VideoComponent
+  ],
   template: `
-    <p>
-      generic works!
-    </p>
-  `,
-  styles: ``
+    <qpuc-video/>
+  `
 })
 export class GenericComponent {
 

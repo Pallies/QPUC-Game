@@ -57,7 +57,7 @@ export class SelectPlayersComponent implements OnInit {
 
   async savePlayer() {
     this.storeService.save(this.players$());
-    await this.router.navigate([this.NAV.HOME_INTRO]);
+    await this.router.navigate([this.NAV.HOME_GENERIC]);
   }
 
 }

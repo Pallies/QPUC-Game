@@ -2,13 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "@core": ["_core/*"],
-      "@containers": ["app/containers/*"],
-      "@layouts": ["app/layouts/*"],
-      "@assets": ["assets/*"],
-      "@shared": ["shared/*"],
+      "@core": ["src/_core/*"],
+      "@containers": ["src/app/containers/*"],
+      "@layouts": ["src/app/layouts/*"],
+      "@assets": ["src/assets/*"],
+      "@shared": ["src/shared/*"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

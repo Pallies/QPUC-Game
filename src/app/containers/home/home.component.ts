@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {MatButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
-import {NAVIGATION_PATH} from "_core/models/enums/path-navigation.enum"
+import {NAVIGATION_PATH} from "src/_core/models/enums/path-navigation.enum"
 
 
 @Component({
