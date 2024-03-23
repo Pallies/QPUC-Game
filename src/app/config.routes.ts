@@ -4,7 +4,7 @@ import {Path_Name as Path} from "../_core/models/types/navigation-path";
 export const routes: Routes = [
   {
     path: Path.EMPTY,
-    redirectTo: 'home',
+    redirectTo: Path.HOME,
     pathMatch: "full"
   },
   {
