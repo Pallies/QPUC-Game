@@ -5,7 +5,7 @@ import {DeskComponent} from "../../../shared/components/desk/desk.component";
 import { MatButtonModule} from "@angular/material/button";
 import {NgIf} from "@angular/common";
 import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum";
-import {MatIcon} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-next.component";
 
@@ -16,7 +16,7 @@ import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-n
     DeskComponent,
     MatButtonModule,
     NgIf,
-    MatIcon,
+    MatIconModule,
     RouterLink,
     BtnNextComponent
   ],providers:[WinningPointsService],

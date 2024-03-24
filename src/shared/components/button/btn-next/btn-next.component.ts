@@ -1,15 +1,14 @@
 import {Component, Input} from '@angular/core';
-import {NAVIGATION_PATH} from "../../../../_core/models/enums/path-navigation.enum";
-import {MatButton} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'qpuc-btn-next',
   standalone: true,
   imports: [
-    MatButton,
-    MatIcon,
+    MatButtonModule,
+    MatIconModule,
     RouterLink
   ],
   template: `

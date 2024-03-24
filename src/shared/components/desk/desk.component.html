@@ -1,7 +1,7 @@
 <div class="container">
   <button class="desk" (click)="winning()" [ngClass]="_winnerDesk()" [disabled]="_winnerAllDesk()">
     <div class="desk-box">
-      @for (box of (deskService.points$()); track $index) {
+      @for (box of ($deskService.points$()); track $index) {
         <button mat-raised-button [color]="box?'accent':'primary'" [tabIndex]="0" [disabled]="_isDisabled()"></button>
       }
       <mat-card class="card" [ngClass]="_winnerDesk()">

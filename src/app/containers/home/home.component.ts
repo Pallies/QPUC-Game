@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import { MatButton} from "@angular/material/button";
-import { MatIcon} from "@angular/material/icon";
+import { MatButtonModule} from "@angular/material/button";
+import { MatIconModule} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {NAVIGATION_PATH} from "src/_core/models/enums/path-navigation.enum"
 import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-next.component";
@@ -10,8 +10,8 @@ import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-n
   selector: 'qpuc-accueil',
   standalone: true,
   imports: [
-    MatButton,
-    MatIcon,
+    MatButtonModule,
+    MatIconModule,
     RouterLink,
     BtnNextComponent
   ],

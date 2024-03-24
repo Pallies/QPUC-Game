@@ -4,16 +4,16 @@ import {IUser} from "../../../_core/models/types/user.model";
 import {DeskService} from "./desk.service";
 import {WinningPointsService} from "../../../app/layouts/winning-points/winning-points.service";
 import {filter, take} from "rxjs";
-import {MatCard} from "@angular/material/card";
+import {MatCardModule} from "@angular/material/card";
 import {AsyncPipe, NgClass} from "@angular/common";
-import {MatButton} from "@angular/material/button";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'qpuc-desk',
   standalone: true,
   imports: [
-    MatCard,
-    MatButton,
+    MatCardModule,
+    MatButtonModule,
     AsyncPipe,
     NgClass
   ], providers: [DeskService],
