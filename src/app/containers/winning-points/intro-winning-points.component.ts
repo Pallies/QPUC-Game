@@ -6,7 +6,7 @@ import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigatio
 import {PATH_SRC} from "../../../_core/models/enums/path-files";
 
 @Component({
-  selector: 'qpuc-intro',
+  selector: 'qpuc-wp-intro',
   standalone: true,
   imports: [
     VideoComponent
