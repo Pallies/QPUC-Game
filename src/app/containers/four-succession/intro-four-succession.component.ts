@@ -14,7 +14,7 @@ import {PATH_SRC} from "../../../_core/models/enums/path-files.enum";
   providers: [
     {
       provide: VIDEO_PATH,
-      useValue: new Video(NAV.FOUR_SUCCESSION_INTRO , PATH_SRC.FOUR_SUCCESSION, NAV.FOUR_SUCCESSION_THEMES)
+      useValue: new Video(NAV.FOUR_SUCCESSION_INTRO , PATH_SRC.FOUR_SUCCESSION, NAV.FOUR_SUCCESSION_THEMES_START)
     },
   ],
   template: `

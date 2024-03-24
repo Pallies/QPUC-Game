@@ -31,13 +31,13 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
 export class SelectPlayersComponent implements OnInit {
   protected readonly NAV = NAVIGATION_PATH;
 
-  $storeService = inject(PlayerStoreService);
+  $storePlayers = inject(PlayerStoreService);
   $router = inject(Router);
   reserves$ = signal<IUser[]>([...PlayerAll]);
   players$ = signal<IUser[]>([]);
 
   ngOnInit(): void {
-    this.$storeService.init();
+    this.$storePlayers.init();
 
   }
 
@@ -55,7 +55,7 @@ export class SelectPlayersComponent implements OnInit {
   }
 
   async savePlayer() {
-    this.$storeService.save(this.players$());
+    this.$storePlayers.save(this.players$());
     await this.$router.navigate([this.NAV.HOME_GENERIC]);
   }
 

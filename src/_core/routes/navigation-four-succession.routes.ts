@@ -14,7 +14,7 @@ export default [
     component:IntroFourSuccessionComponent
   },
   {
-    path:PATH.SELECTION_THEME,
+    path:PATH.SELECTION_THEME+'/:id',
     component:ThemeFourSuccessionComponent
   }
 ]as Routes;

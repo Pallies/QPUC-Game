@@ -8,11 +8,11 @@ import {PlayerStoreService} from "../../../shared/store/player-store.service";
 })
 export class WinningPointsService {
 
-  $store = inject(PlayerStoreService)
+  $storePlayers = inject(PlayerStoreService)
   point$: BehaviorSubject<number> = new BehaviorSubject(1);
   deskWinning$ = signal<number>(0);
 
-  players: IUser[] = this.$store.playersStore;
+  players: IUser[] = this.$storePlayers.players;
   playersWin: IUser[] = [];
 
 

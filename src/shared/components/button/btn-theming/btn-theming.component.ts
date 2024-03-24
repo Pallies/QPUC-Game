@@ -1,6 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import { MatButtonModule} from "@angular/material/button";
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {MatButtonModule} from "@angular/material/button";
 import {NgClass, NgStyle} from "@angular/common";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {ThemeStoreService} from "../../../store/theme-store.service";
+import {Router} from "@angular/router";
+import {NAVIGATION_PATH as NAV} from "../../../../_core/models/enums/path-navigation.enum";
 
 @Component({
   selector: 'qpuc-btn-theming',
@@ -9,11 +13,29 @@ import {NgClass, NgStyle} from "@angular/common";
     MatButtonModule,
     NgStyle,
     NgClass
+  ], animations: [
+    trigger('selected', [
+      state('select', style({
+        backgroundColor: '#ffd600',
+        color: '#000'
+      })),
+      state('not', style({
+        backgroundColor: '#131432',
+        color: '#ffd600'
+      })),
+      transition('select=>not', [animate('1s')]),
+      transition('not=>select', [animate('1s')]),
+    ]),
   ],
   template: `
-    <div class="container" [ngStyle]="{'visibility':disabled?'hidden':'visible'}">
-      <button mat-stroked-button color="accent" class="box valid" [disabled]="disabled">
-         <ng-content/>
+    <div class="container" [ngStyle]="{'visibility':visible?'hidden':'visible'}">
+      <button mat-stroked-button color="accent"
+              class="box"
+              [@selected]="selected?'select':'not'"
+              [disabled]="disabled"
+              (click)="handleSelect();selected=true"
+      >
+        {{ theme }}
         <div class="box_content">
         </div>
       </button>
@@ -23,6 +45,24 @@ import {NgClass, NgStyle} from "@angular/common";
 })
 export class BtnThemingComponent {
 
-  @Input() disabled:boolean=false;
-  @Output() choice=new EventEmitter<boolean>();
+  @Input() visible: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input('theming') theme!: string;
+
+  @Output() disabledChanges=new EventEmitter<void>();
+  $themeStore=inject(ThemeStoreService);
+  $router=inject(Router);
+  selected = this.$themeStore.isAlreadyChosen(this.theme);
+
+
+  handleSelect() {
+    if(!this.selected){
+      this.disabledChanges.emit()
+      this.$themeStore.nextPlayer(this.theme);
+    // setTimeout(() => {
+    //   let index=this.$themeStore.index
+    //   this.$router.navigate([NAV.FOUR_SUCCESSION])
+    // }, 5000);
+    }
+  }
 }
