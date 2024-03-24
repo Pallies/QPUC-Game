@@ -27,6 +27,7 @@ export class WinningPointsComponent implements OnDestroy {
   $service = inject(WinningPointsService);
   $store = inject(PlayerStoreService);
 
+  // Nouvel enregistrement de l'ordre des joueurs
   ngOnDestroy(): void {
     this.$store.playersStore = this.$service.playersWin;
   }
