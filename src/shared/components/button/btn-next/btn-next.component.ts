@@ -15,29 +15,33 @@ import {RouterLink} from "@angular/router";
     <button [class]="'button-'+size"
             mat-raised-button color="accent"
             [routerLink]="routerLink">
-      Start
+      {{ name }}
       <span>
-          <mat-icon class="mat-icon-rtl-mirror icon" fontIcon="navigate_next"/>
+          <mat-icon class="mat-icon-rtl-mirror icon" [fontIcon]="icon"/>
         </span>
     </button>
   `,
-  styles: `.button  {
-      color: #131432 !important;
-    &-large{
+  styles: `.button {
+    color: #131432 !important;
+
+    &-large {
       font-size: xxx-large;
       margin: 1rem;
       padding: 2rem;
-        .icon {
+
+      .icon {
         font-size: 2rem;
         transform: translate(-25%, -25%);
       }
     }
-    &-medium{
+
+    &-medium {
       font-size: x-large;
-      margin: .5rem;
+      margin-top: .5rem;
       padding: 1rem;
+
       .icon {
-        font-size: 2rem;
+        font-size: 25px;
       }
     }
   }
@@ -45,6 +49,8 @@ import {RouterLink} from "@angular/router";
   `
 })
 export class BtnNextComponent {
-  @Input() routerLink!:any;
-  @Input()size='large';
+  @Input() name = "Start";
+  @Input() icon="navigate_next";
+  @Input() routerLink!: any;
+  @Input() size = 'large';
 }

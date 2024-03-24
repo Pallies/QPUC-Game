@@ -25,10 +25,11 @@ import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-n
 })
 export class WinningPointsComponent implements OnDestroy {
   $service = inject(WinningPointsService);
-  $store = inject(PlayerStoreService);
+  $storePlayers = inject(PlayerStoreService);
 
+  // Nouvel enregistrement de l'ordre des joueurs
   ngOnDestroy(): void {
-    this.$store.playersStore = this.$service.playersWin;
+    this.$storePlayers.players = this.$service.playersWin;
   }
 
   protected readonly Nav = NAVIGATION_PATH;

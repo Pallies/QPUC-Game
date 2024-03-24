@@ -8,10 +8,10 @@ import {PlayerAll} from "../../_core/models/types/player.model";
 })
 export class PlayerStoreService {
   protected _players = new BehaviorSubject<IUser[]>(PlayerAll.slice(0,4))
-  set playersStore(players: IUser[]) {
+  set players(players: IUser[]) {
     this._players.next(players)
   }
-  get playersStore(): IUser[]{
+  get players(): IUser[]{
     return this._players.getValue();
   }
   init():void{

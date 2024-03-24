@@ -1,6 +1,6 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {filter, from, interval, Observable, of, take, zip} from "rxjs";
-import {PATH_AUDIO} from "../../../_core/models/enums/path-audio";
+import {PATH_AUDIO} from "../../../_core/models/enums/path-audio.enum";
 import {toObservable} from "@angular/core/rxjs-interop";
 import {AudioService} from "../../../_core/services/audio.service";
 import {WinningPointsService} from "../../../app/layouts/winning-points/winning-points.service";
@@ -38,7 +38,10 @@ export class DeskService {
       zip(of(point, 0, point, 0, point), interval(250).pipe(take(5)), (value, _) => value)
         .subscribe(value => {
           let pointWin: number = point;
-          const v = value ? this.points$.set(oldPoint.map(v => v || 0 < pointWin-- ? 1 : 0)) :
+           if(value){
+             this.points$.set(oldPoint.map(v => v || 0 < pointWin-- ? 1 : 0))
+             return;
+           }
             this.points$.set(oldPoint);
         })
     }
