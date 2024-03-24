@@ -3,7 +3,7 @@ import {VideoComponent} from "../../../shared/components/video/video.component";
 import {VIDEO_PATH} from "../../../shared/components/video/video.injection-token";
 import {Video} from "../../../_core/models/types/video.model";
 import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
-import {PATH_SRC} from "../../../_core/models/enums/path-files";
+import {PATH_SRC} from "../../../_core/models/enums/path-files.enum";
 
 @Component({
   selector: 'qpuc-fs-intro',

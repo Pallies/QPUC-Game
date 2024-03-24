@@ -1,6 +1,6 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {filter, from, interval, Observable, of, take, zip} from "rxjs";
-import {PATH_AUDIO} from "../../../_core/models/enums/path-audio";
+import {PATH_AUDIO} from "../../../_core/models/enums/path-audio.enum";
 import {toObservable} from "@angular/core/rxjs-interop";
 import {AudioService} from "../../../_core/services/audio.service";
 import {WinningPointsService} from "../../../app/layouts/winning-points/winning-points.service";
