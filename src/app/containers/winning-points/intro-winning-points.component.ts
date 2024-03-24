@@ -15,7 +15,8 @@ import {PATH_SRC} from "../../../_core/models/enums/path-files";
     {
       provide: VIDEO_PATH,
       useValue: new Video(NAV.WINNING_POINT_INTRO , PATH_SRC.WINNING_POINT, NAV.WINNING_POINT)
-    }],
+    },
+  ],
   template: `
     <qpuc-video/>
   `,
