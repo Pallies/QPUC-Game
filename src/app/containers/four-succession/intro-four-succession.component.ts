@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import {VideoComponent} from "../../../shared/components/video/video.component";
 import {VIDEO_PATH} from "../../../shared/components/video/video.injection-token";
 import {Video} from "../../../_core/models/types/video.model";
-import {VideoComponent} from "../../../shared/components/video/video.component";
 import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
 import {PATH_SRC} from "../../../_core/models/enums/path-files";
 
 @Component({
-  selector: 'qpuc-wp-intro',
+  selector: 'qpuc-fs-intro',
   standalone: true,
   imports: [
     VideoComponent
@@ -14,13 +14,14 @@ import {PATH_SRC} from "../../../_core/models/enums/path-files";
   providers: [
     {
       provide: VIDEO_PATH,
-      useValue: new Video(NAV.WINNING_POINT_INTRO , PATH_SRC.WINNING_POINT, NAV.WINNING_POINT)
+      useValue: new Video(NAV.FOUR_SUCCESSION_INTRO , PATH_SRC.FOUR_SUCCESSION, NAV.FOUR_SUCCESSION_THEMES)
     },
   ],
   template: `
     <qpuc-video/>
   `,
+  styles: ``
 })
-export class IntroWinningPointsComponent {
+export class IntroFourSuccessionComponent {
 
 }
