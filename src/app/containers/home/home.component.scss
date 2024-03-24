@@ -44,24 +44,3 @@
     }
   }
 }
-
-button {
-}
-
-.button {
-
-
-  &-action {
-    width: max-content;
-    font-size: xxx-large;
-    color: #131432 !important;
-    margin: 1rem;
-    padding: 2rem;
-  }
-}
-
-.icon {
-  font-size: xx-large;
-  transform: translate(-25%, -25%);
-  z-index: 1;
-}

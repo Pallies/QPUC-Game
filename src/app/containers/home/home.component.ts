@@ -1,16 +1,19 @@
 import {Component} from '@angular/core';
-import {MatButton} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
+import { MatButtonModule} from "@angular/material/button";
+import { MatIconModule} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {NAVIGATION_PATH} from "src/_core/models/enums/path-navigation.enum"
+import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-next.component";
 
 
 @Component({
+  selector: 'qpuc-accueil',
   standalone: true,
   imports: [
-    MatButton,
-    MatIcon,
-    RouterLink
+    MatButtonModule,
+    MatIconModule,
+    RouterLink,
+    BtnNextComponent
   ],
   template: `
     <div class="container">
@@ -20,17 +23,7 @@ import {NAVIGATION_PATH} from "src/_core/models/enums/path-navigation.enum"
           <h1 class="title-char" [id]="'char-'+$index">{{ char }}</h1>
         }
       </div>
-      <div class="button-box">
-        <button class="button-action"
-                mat-raised-button color="accent"
-                [routerLink]="Nav.HOME_SELECT_PLAYERS">
-          Start
-          <span>
-          <mat-icon class="mat-icon-rtl-mirror icon" fontIcon="navigate_next"/>
-        </span>
-        </button>
-
-      </div>
+      <qpuc-btn-next [routerLink]="Nav.HOME_SELECT_PLAYERS"/>
     </div>
   `,
   styleUrl: './home.component.scss'

@@ -1,25 +1,21 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {firstValueFrom} from "rxjs";
+import {inject, Injectable} from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AudioService {
 
   private audioContext: AudioContext;
-
-  constructor(private http: HttpClient) {
+  private audioBuffer!: AudioBuffer;
+  constructor() {
     this.audioContext = new AudioContext();
   }
 
-
   async loadAudioFile(filePath: string): Promise<AudioBufferSourceNode> {
+    const file=await fetch(filePath);
+    const arrayBuffer = await file.arrayBuffer();
+    this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
     const source = this.audioContext.createBufferSource();
-    const arrayBuffer = await firstValueFrom(this.http.get(filePath, {responseType: 'arraybuffer'}));
-    source.buffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    source.buffer = this.audioBuffer;
     source.connect(this.audioContext.destination);
     return source;
   }
-
 }

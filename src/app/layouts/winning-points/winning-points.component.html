@@ -1,0 +1,15 @@
+<div class="container">
+  @for (player of $service.players; track $index) {
+    <qpuc-desk [user]="player"></qpuc-desk>
+  }
+</div>
+<div class="footer">
+  @if ($service.deskWinning$() > 3) {
+
+    <button *ngIf="$service.point$.getValue()==1" mat-raised-button color="primary">1 Points</button>
+    <button *ngIf="$service.point$.getValue()==2" mat-raised-button color="accent">2 Points</button>
+    <button *ngIf="$service.point$.getValue()==3" mat-raised-button color="warn">3 Points</button>
+  } @else {
+    <qpuc-btn-next size="medium" [routerLink]="Nav.HOME_SELECT_PLAYERS"/>
+  }
+</div>

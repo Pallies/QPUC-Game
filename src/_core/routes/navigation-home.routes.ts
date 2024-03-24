@@ -9,7 +9,7 @@ export default [
     component: HomeComponent
   },
   {
-    path: PATH.GENERIQUE,
+    path: PATH.GENERIC,
     component: GenericComponent
   },
   {

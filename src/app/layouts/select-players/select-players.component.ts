@@ -7,13 +7,12 @@ import {
   moveItemInArray,
   transferArrayItem
 } from "@angular/cdk/drag-drop";
-import {MatButton} from "@angular/material/button";
+import { MatButtonModule} from "@angular/material/button";
 import {IUser} from "../../../_core/models/types/user.model";
-import {MatIcon} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {PlayerAll} from "../../../_core/models/types/player.model";
-import {StoreService} from "../../shared/store.service";
+import {PlayerStoreService} from "../../../shared/store/player-store.service";
 import {Router} from "@angular/router";
-import {PATH_NAME} from "../../../_core/models/enums/path-name.enum";
 import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum";
 
 @Component({
@@ -21,9 +20,9 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
   standalone: true,
   imports: [
     CdkDropList,
-    MatButton,
+    MatButtonModule,
     CdkDrag,
-    MatIcon,
+    MatIconModule,
     CdkDropListGroup
   ],
   templateUrl: './select-players.component.html',
@@ -32,13 +31,13 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
 export class SelectPlayersComponent implements OnInit {
   protected readonly NAV = NAVIGATION_PATH;
 
-  storeService = inject(StoreService);
-  router = inject(Router);
+  $storeService = inject(PlayerStoreService);
+  $router = inject(Router);
   reserves$ = signal<IUser[]>([...PlayerAll]);
   players$ = signal<IUser[]>([]);
 
   ngOnInit(): void {
-    this.storeService.init();
+    this.$storeService.init();
 
   }
 
@@ -56,8 +55,8 @@ export class SelectPlayersComponent implements OnInit {
   }
 
   async savePlayer() {
-    this.storeService.save(this.players$());
-    await this.router.navigate([this.NAV.HOME_GENERIC]);
+    this.$storeService.save(this.players$());
+    await this.$router.navigate([this.NAV.HOME_GENERIC]);
   }
 
 }
