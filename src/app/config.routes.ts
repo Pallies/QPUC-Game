@@ -14,9 +14,5 @@ export const routes: Routes = [
   {
     path: Path.WINNING_POINTS,
     loadChildren: () => import('src/_core/routes/navigation-winning-point.routes')
-  },
-  {
-    path: Path.FOUR_SUCCESSION,
-    loadChildren: () => import('src/_core/routes/navigation-four-succession.routes')
   }
 ];
