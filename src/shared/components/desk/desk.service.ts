@@ -38,7 +38,10 @@ export class DeskService {
       zip(of(point, 0, point, 0, point), interval(250).pipe(take(5)), (value, _) => value)
         .subscribe(value => {
           let pointWin: number = point;
-           value ? this.points$.set(oldPoint.map(v => v || 0 < pointWin-- ? 1 : 0)) :
+           if(value){
+             this.points$.set(oldPoint.map(v => v || 0 < pointWin-- ? 1 : 0))
+             return;
+           }
             this.points$.set(oldPoint);
         })
     }
