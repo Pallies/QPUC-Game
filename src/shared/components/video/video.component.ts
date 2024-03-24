@@ -6,7 +6,6 @@ import {VIDEO_PATH} from "./video.injection-token";
 @Component({
   selector: 'qpuc-video',
   standalone: true,
-  imports: [],
   template: `
     <div class="center" (click)="following()">
       <video #videoRef id="transition">
@@ -27,21 +26,21 @@ import {VIDEO_PATH} from "./video.injection-token";
 })
 export class VideoComponent {
   src!: string;
-  #video: VideoService = inject(VideoService)
-  #videoPath:IVideo;
+  $video: VideoService = inject(VideoService)
+  videoPath:IVideo;
   constructor(@Inject(VIDEO_PATH) videoPath: IVideo) {
-    this.#videoPath=videoPath;
+    this.videoPath=videoPath;
   }
   @ViewChild('videoRef') set video(el: ElementRef) {
     if (el) {
-      this.#video.init(el.nativeElement,this.#videoPath)
+      this.$video.init(el.nativeElement,this.videoPath)
     }
   }
 
   ngAfterViewInit(): void {
-    this.#video.play();
+    this.$video.play();
   }
   following() {
-    this.#video.closed(this.#videoPath)
+    this.$video.closed(this.videoPath)
   }
 }
