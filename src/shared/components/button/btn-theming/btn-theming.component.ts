@@ -4,7 +4,6 @@ import {NgClass, NgStyle} from "@angular/common";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ThemeStoreService} from "../../../store/theme-store.service";
 import {Router} from "@angular/router";
-import {NAVIGATION_PATH as NAV} from "../../../../_core/models/enums/path-navigation.enum";
 
 @Component({
   selector: 'qpuc-btn-theming',
