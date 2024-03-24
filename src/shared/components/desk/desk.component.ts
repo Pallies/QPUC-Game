@@ -24,9 +24,9 @@ export class DeskComponent {
   $deskService: DeskService = inject(DeskService);
   $winningPointService: WinningPointsService = inject(WinningPointsService);
 
-  _winnerDesk: Signal<string> = computed(() => this.deskService.winner$())
-  _isWinnerDesk: Signal<boolean | undefined> = toSignal(this.deskService.isWinner$.pipe(filter(v => v), take(1)))
-  _winnerAllDesk: Signal<boolean> = computed(() => this.winningPointService.deskWinning$() == 3);
+  _winnerDesk: Signal<string> = computed(() => this.$deskService.winner$())
+  _isWinnerDesk: Signal<boolean | undefined> = toSignal(this.$deskService.isWinner$.pipe(filter(v => v), take(1)))
+  _winnerAllDesk: Signal<boolean> = computed(() => this.$winningPointService.deskWinning$() == 3);
   _isDisabled: Signal<boolean> = computed(() => this._winnerAllDesk() && this._winnerDesk() != 'winner')
 
   @Input() user!: IUser;
