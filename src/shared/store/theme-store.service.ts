@@ -10,8 +10,7 @@ export class ThemeStoreService {
   _themes = Object.values(THEME);
   _index = new BehaviorSubject(0);
   _themesChoice:BehaviorSubject<string[]> = new BehaviorSubject(['']);
-  constructor() {
-  }
+
 
   get themes() {
     return this._themes;
