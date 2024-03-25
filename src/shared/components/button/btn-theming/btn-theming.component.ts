@@ -61,7 +61,7 @@ export class BtnThemingComponent {
     if(!this.selected){
       this.disabledChanges.emit()
       this.$audioThemes.selectedTheme();
-      this.$themeStore.nextPlayer(this.theme);
+      this.$themeStore.selectedTheme(this.theme);
     }
   }
 }
