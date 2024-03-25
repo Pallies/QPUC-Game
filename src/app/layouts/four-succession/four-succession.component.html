@@ -1,0 +1,42 @@
+<div class="container">
+  <section>
+    <qpuc-hexagon [active]="currentPoint()">4</qpuc-hexagon>
+    <qpuc-hexagon [active]="currentPoint()">3</qpuc-hexagon>
+    <qpuc-hexagon [active]="currentPoint()">2</qpuc-hexagon>
+    <qpuc-hexagon [active]="currentPoint()">1</qpuc-hexagon>
+  </section>
+  <div class="box">
+    <div>
+      <img [src]="player?.src" alt="image du joueur"/>
+    </div>
+    <button mat-raised-button
+            color="primary"
+            [ngStyle]="isStart()?{visibility:'hidden'}:{}"
+            (click)="isStart.set(true)"
+    >COMMENCER
+    </button>
+    <button mat-raised-button
+            color="primary"
+            [ngStyle]="isStart()&&isEnd$()&&numberPlayer()<2?{visibility:'visible'}:{visibility:'hidden'}"
+            (click)="next()"
+    >PROCHAIN JOUEUR
+    </button>
+    <div style="margin-top: 3rem">
+      <button mat-raised-button
+              color="warn"
+              [ngStyle]="currentPoint()==4||!isStart()||isEnd$()?{visibility:'hidden'}:{visibility:'visible'}"
+              (click)="reset()"
+      >FAUX
+      </button>
+      <button mat-raised-button
+              style=" margin-left: 3rem"
+              color="accent"
+              [ngStyle]="currentPoint()==4||!isStart()||isEnd$()?{visibility:'hidden'}:{visibility:'visible'}"
+              (click)="increment()"
+      >VRAI
+      </button>
+    </div>
+
+  </div>
+</div>
+
