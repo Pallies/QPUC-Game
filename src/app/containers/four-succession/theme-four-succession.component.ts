@@ -10,6 +10,7 @@ import {ThemeStoreService} from "../../../shared/store/theme-store.service";
 import {MatButton} from "@angular/material/button";
 import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-next.component";
 import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'qpuc-theme-four-succession',
@@ -19,6 +20,18 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
     MatCardModule,
     MatButton,
     BtnNextComponent,
+  ],animations:[
+    trigger('out-in',[
+      state('out',style({
+        visibility:'hidden',
+        transform:'translateX(-50%) scale(0.25)'
+      })),
+      state('in',style({
+        visibility:'visible',
+      })),
+      transition('out=>in',
+        [animate('.5s')])
+    ])
   ],
   template: `
     <div class="container">
@@ -41,11 +54,11 @@ import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum"
         >
         </qpuc-btn-theming>
       }
-      @if (deactivated) {
-        <div class="container-box">
-          <qpuc-btn-next name="Suite" icon="next_plan" size="medium" [routerLink]="Nav.FOUR_SUCCESSION"/>
+
+        <div class="container-box" [@out-in]="deactivated?'in':'out'">
+          <qpuc-btn-next name="Suite" size="medium" color="accent" [routerLink]="Nav.FOUR_SUCCESSION"/>
         </div>
-      }
+
     </div>
   `,
   styles: `

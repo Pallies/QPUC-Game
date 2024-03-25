@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
+import {FourSuccessionComponent} from "../../layouts/four-succession/four-succession.component";
 
 @Component({
   selector: 'qpuc-four-succession-container',
   standalone: true,
-  imports: [],
+  imports: [
+    FourSuccessionComponent
+  ],
   template: `
-    <p>
-      four-succession-container works!
-    </p>
+    <qpuc-four-succession/>
   `,
   styles: ``
 })

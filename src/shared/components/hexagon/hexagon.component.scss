@@ -1,0 +1,46 @@
+.container {
+  margin-left: 25px;
+  position: relative;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  height: 200px;
+  width: 200px;
+  background-color: #299cce;
+  color: #299cce;
+  font-size: 100px;
+}
+
+.box {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  height: 190px;
+  width: 190px;
+  background-color: #131432;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  & _content {
+    height: 200px;
+    width: 200px;
+    color: #299cce;
+  }
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 100%;
+    background-color: gold;
+    z-index: -1;
+  }
+}
+
+.valid {
+  &::after {
+    height: 100%;
+  }
+}

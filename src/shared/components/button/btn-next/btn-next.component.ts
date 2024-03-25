@@ -13,11 +13,11 @@ import {RouterLink} from "@angular/router";
   ],
   template: `
     <button [class]="'button-'+size"
-            mat-raised-button color="accent"
+            mat-stroked-button [color]="color"
             [routerLink]="routerLink">
       {{ name }}
       <span>
-          <mat-icon class="mat-icon-rtl-mirror icon" [fontIcon]="icon"/>
+          <mat-icon class="mat-icon-rtl-mirror icon" [fontIcon]="name=='Start'?'navigate_next':'next_plan'"/>
         </span>
     </button>
   `,
@@ -50,7 +50,7 @@ import {RouterLink} from "@angular/router";
 })
 export class BtnNextComponent {
   @Input() name = "Start";
-  @Input() icon="navigate_next";
+  @Input() color="primary";
   @Input() routerLink!: any;
   @Input() size = 'large';
 }

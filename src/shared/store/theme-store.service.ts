@@ -10,8 +10,7 @@ export class ThemeStoreService {
   _themes = Object.values(THEME);
   _index = new BehaviorSubject(0);
   _themesChoice:BehaviorSubject<string[]> = new BehaviorSubject(['']);
-  constructor() {
-  }
+
 
   get themes() {
     return this._themes;
@@ -20,13 +19,16 @@ export class ThemeStoreService {
   get index() {
     return this._index.getValue();
   }
-  nextPlayer(theme:string){
+  nextPlayer(){
     this._index.next(this._index.getValue()+1);
-    this._themesChoice.next([...this._themesChoice.getValue(),theme])
-    this.themes
+    console.log(this.index)
   }
   isAlreadyChosen(theme:string):boolean{
     console.log(this._themesChoice.getValue())
     return this._themesChoice.getValue().includes(theme);
+  }
+
+  selectedTheme(theme: string) {
+    this._themesChoice.next([...this._themesChoice.getValue(),theme])
   }
 }

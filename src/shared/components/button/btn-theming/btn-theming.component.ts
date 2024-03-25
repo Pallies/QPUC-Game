@@ -4,6 +4,7 @@ import {NgClass, NgStyle} from "@angular/common";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ThemeStoreService} from "../../../store/theme-store.service";
 import {Router} from "@angular/router";
+import {BtnThemingService} from "./btn-theming.service";
 
 @Component({
   selector: 'qpuc-btn-theming',
@@ -50,6 +51,8 @@ export class BtnThemingComponent {
 
   @Output() disabledChanges=new EventEmitter<void>();
   $themeStore=inject(ThemeStoreService);
+  $audioThemes=inject(BtnThemingService)
+
   $router=inject(Router);
   selected = this.$themeStore.isAlreadyChosen(this.theme);
 
@@ -57,11 +60,8 @@ export class BtnThemingComponent {
   handleSelect() {
     if(!this.selected){
       this.disabledChanges.emit()
-      this.$themeStore.nextPlayer(this.theme);
-    // setTimeout(() => {
-    //   let index=this.$themeStore.index
-    //   this.$router.navigate([NAV.FOUR_SUCCESSION])
-    // }, 5000);
+      this.$audioThemes.selectedTheme();
+      this.$themeStore.selectedTheme(this.theme);
     }
   }
 }
