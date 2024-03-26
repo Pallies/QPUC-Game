@@ -4,7 +4,7 @@
   }
 </div>
 <div class="footer">
-  @if ($service.deskWinning$() > 3) {
+  @if ($service.deskWinning$() < 3) {
 
     <button *ngIf="$service.point$.getValue()==1" mat-raised-button color="primary">1 Points</button>
     <button *ngIf="$service.point$.getValue()==2" mat-raised-button color="accent">2 Points</button>

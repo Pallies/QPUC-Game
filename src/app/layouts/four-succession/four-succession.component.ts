@@ -1,6 +1,6 @@
 import {Component, computed, effect, inject, OnDestroy, signal} from '@angular/core';
 import {PlayerStoreService} from "../../../shared/store/player-store.service";
-import {FourSuccessionService} from "./four-succession.service";
+import {FourSuccessionAudioService} from "./four-succession-audio.service";
 import {NgStyle} from "@angular/common";
 import {MatButton} from "@angular/material/button";
 import {HexagonComponent} from "../../../shared/components/hexagon/hexagon.component";
@@ -28,7 +28,7 @@ export class FourSuccessionComponent implements OnDestroy{
   numberPlayer = signal(0)
   currentPoint  = signal<number>(0);
   maxPoint: number = 0
-  $soundService = inject(FourSuccessionService)
+  $audioService = inject(FourSuccessionAudioService)
   isStart = signal(false)
   isEnd = signal(false)
   isEnd$ = computed<boolean>(() => {
@@ -41,15 +41,15 @@ export class FourSuccessionComponent implements OnDestroy{
         this.maxPoint = this.currentPoint()
       }
       if (this.currentPoint() == 4) {
-        this.$soundService.qualified()
+        this.$audioService.qualified()
         this.end()
       } else if (this.currentPoint() > 0) {
-        this.$soundService.rightAnswer()
+        this.$audioService.rightAnswer()
       }
     })
     effect(() => {
       if (this.isStart()) {
-        this.$soundService.start()
+        this.$audioService.start()
         this.timer = setTimeout(() => {
           this.isEnd.set(true)
           this.end()
@@ -67,7 +67,7 @@ export class FourSuccessionComponent implements OnDestroy{
   }
 
   end() {
-    this.$soundService.stop();
+    this.$audioService.stop();
     clearTimeout(this.timer);
     this.$storeTheme.nextPlayer();
 

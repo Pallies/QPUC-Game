@@ -20,14 +20,14 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     MatCardModule,
     MatButton,
     BtnNextComponent,
-  ],animations:[
-    trigger('out-in',[
-      state('out',style({
-        visibility:'hidden',
-        transform:'translateX(-50%) scale(0.25)'
+  ], animations: [
+    trigger('out-in', [
+      state('out', style({
+        visibility: 'hidden',
+        transform: 'translateX(-50%) scale(0.25)'
       })),
-      state('in',style({
-        visibility:'visible',
+      state('in', style({
+        visibility: 'visible',
       })),
       transition('out=>in',
         [animate('.5s')])
@@ -48,16 +48,19 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
       </div>
 
       @for (theme of $storeThemes.themes; track $index) {
-        <qpuc-btn-theming [theming]="theme" [visible]="user.theme==theme"
+        <qpuc-btn-theming [theming]="theme"
+                          [visible]="user.theme==theme || index!=2 ?
+                                         $storeThemes.isAlreadyChosen(theme) :
+                                        !$storeThemes.isAlreadyChosen(lastTheme)"
                           (disabledChanges)="deactivated=!deactivated"
                           [disabled]="deactivated"
         >
         </qpuc-btn-theming>
       }
 
-        <div class="container-box" [@out-in]="deactivated?'in':'out'">
-          <qpuc-btn-next name="Suite" size="medium" color="accent" [routerLink]="Nav.FOUR_SUCCESSION"/>
-        </div>
+      <div class="container-box" [@out-in]="deactivated?'in':'out'">
+        <qpuc-btn-next name="Suite" size="medium" color="accent" [routerLink]="Nav.FOUR_SUCCESSION"/>
+      </div>
 
     </div>
   `,
@@ -69,12 +72,14 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         align-self: center;
         font-size: xxx-large;
       }
-      &-box{
+
+      &-box {
         position: absolute;
-        top:70%;
-        left:50%;
+        top: 70%;
+        left: 50%;
         transform: translateX(-50%);
       }
+
       display: grid;
       grid-template-rows:2fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr;
@@ -113,12 +118,14 @@ export class ThemeFourSuccessionComponent implements OnInit {
   $routeActived = inject(ActivatedRoute);
   $storePlayers = inject(PlayerStoreService);
   $storeThemes = inject(ThemeStoreService);
-  deactivated=false;
+  deactivated = false;
   user!: IUser;
-
+  lastTheme: string;
+  index:number;
   ngOnInit(): void {
-    const index = this.$routeActived.snapshot.params['id'];
-    this.user = this.$storePlayers.players.at(index) as IUser;
+    this.index = this.$routeActived.snapshot.params['id'];
+    this.user = this.$storePlayers.players.at(this.index) as IUser;
+    this.lastTheme = this.$storePlayers.players.at(3).theme;
   }
 
   protected readonly Nav = NAVIGATION_PATH;

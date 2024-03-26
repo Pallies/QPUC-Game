@@ -21,10 +21,8 @@ export class ThemeStoreService {
   }
   nextPlayer(){
     this._index.next(this._index.getValue()+1);
-    console.log(this.index)
   }
   isAlreadyChosen(theme:string):boolean{
-    console.log(this._themesChoice.getValue())
     return this._themesChoice.getValue().includes(theme);
   }
 
