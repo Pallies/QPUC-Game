@@ -5,7 +5,7 @@ import {AudioService} from "../../../_core/services/audio.service";
 @Injectable({
   providedIn: 'root'
 })
-export class FourSuccessionService {
+export class FourSuccessionAudioService {
 
   audioCount!: AudioBufferSourceNode;
   $audio = inject(AudioService)
