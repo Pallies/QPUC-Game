@@ -80,12 +80,12 @@ export class FourSuccessionComponent implements OnDestroy{
 
   }
 
-  next() {
+  async next() {
     const index=this.$storeTheme.index;
     if(index<4)
-      this.$router.navigate([`${NAV.FOUR_SUCCESSION_THEMES}/${index}`])
+      await this.$router.navigate([`${NAV.FOUR_SUCCESSION_THEMES}/${index}`])
     else
-      this.$router.navigate([`${NAV.FACE_TO_FACE_INTRO}`])
+      await this.$router.navigate([`${NAV.FACE_TO_FACE_INTRO}`])
   }
 
   ngOnDestroy(): void {
