@@ -49,9 +49,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 
       @for (theme of $storeThemes.themes; track $index) {
         <qpuc-btn-theming [theming]="theme"
-                          [visible]="user.theme==theme || index!=2 ?
-                                         $storeThemes.isAlreadyChosen(theme) :
-                                        !$storeThemes.isAlreadyChosen(lastTheme)"
+                          [visible]="isUserTheme(theme)||$storeThemes.isAlreadyChosen(theme) "
                           (disabledChanges)="deactivated=!deactivated"
                           [disabled]="deactivated"
         >
@@ -120,13 +118,16 @@ export class ThemeFourSuccessionComponent implements OnInit {
   $storeThemes = inject(ThemeStoreService);
   deactivated = false;
   user!: IUser;
-  lastTheme: string;
-  index:number;
+  lastTheme!: string;
+  index!:number;
   ngOnInit(): void {
-    this.index = this.$routeActived.snapshot.params['id'];
+    this.index  = this.$routeActived.snapshot.params['id'];
     this.user = this.$storePlayers.players.at(this.index) as IUser;
-    this.lastTheme = this.$storePlayers.players.at(3).theme;
+    this.lastTheme = this.$storePlayers.players[3].theme as string;
   }
-
+  isUserTheme(theme:string){
+    console.log(this.user.theme==theme,this.user.theme==theme && this.index!=2 ?true:this.lastTheme!=theme,' ',theme)
+     return this.user.theme==theme && (this.index!=2 ?true:this.lastTheme!=theme);
+  }
   protected readonly Nav = NAVIGATION_PATH;
 }
