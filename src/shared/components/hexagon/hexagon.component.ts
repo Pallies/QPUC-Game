@@ -11,8 +11,7 @@ import {HexagonDirective} from "./hexagon.directive";
     <div class="container">
       <div [qpucHexagon]="active" class="box">
         <ng-content/>
-        <div class="box_content">
-        </div>
+        <div class="box_content"></div>
       </div>
     </div>`,
   styleUrl: './hexagon.component.scss'

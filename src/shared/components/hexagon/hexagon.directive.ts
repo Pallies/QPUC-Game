@@ -1,10 +1,10 @@
-import {Directive, ElementRef, inject, Input, Renderer2, SimpleChanges} from '@angular/core';
+import {Directive, ElementRef, inject, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 
 @Directive({
   selector: '[qpucHexagon]',
   standalone: true
 })
-export class HexagonDirective {
+export class HexagonDirective implements OnChanges{
 
   @Input() qpucHexagon!:number;
 
