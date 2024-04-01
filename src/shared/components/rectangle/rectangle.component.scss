@@ -1,0 +1,48 @@
+
+.container {
+  position: relative;
+  margin-left: 25px;
+  height: 200px;
+  width: 140px;
+  color: #299cce;
+  background-color: #299cce;
+  font-size: 100px;
+}
+
+.box {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 190px;
+  width: 130px;
+  background-color: #131432;
+  display: flex;
+  transform: rotate(180deg);
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+
+  &_content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 190px;
+    width: 130px;
+    color: #299cce;
+    --height-after: 100%
+     ;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: var(--height-after);
+      width: 100%;
+      background-color: gold;
+      z-index: -1;
+    }
+  }
+}
+
+
+

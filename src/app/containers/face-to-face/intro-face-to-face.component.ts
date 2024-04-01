@@ -2,26 +2,25 @@ import { Component } from '@angular/core';
 import {VideoComponent} from "../../../shared/components/video/video.component";
 import {VIDEO_PATH} from "../../../shared/components/video/video.injection-token";
 import {Video} from "../../../_core/models/types/video.model";
-import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
 import {PATH_SRC as SRC} from "../../../_core/models/enums/path-files.enum";
+import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
 
 @Component({
-  selector: 'qpuc-fs-intro',
+  selector: 'qpuc-intro-face-to-face',
   standalone: true,
   imports: [
     VideoComponent
-  ],
-  providers: [
+  ],providers:[
     {
       provide: VIDEO_PATH,
-      useValue: new Video(NAV.FOUR_SUCCESSION_INTRO , SRC.FOUR_SUCCESSION, NAV.FOUR_SUCCESSION_THEMES_START)
-    },
+      useValue:new Video(NAV.FACE_TO_FACE_INTRO,SRC.FACE_TO_FACE,NAV.FACE_TO_FACE_FINAL)
+    }
   ],
   template: `
-    <qpuc-video/>
+    <qpuc-video></qpuc-video>
   `,
   styles: ``
 })
-export class IntroFourSuccessionComponent {
+export class IntroFaceToFaceComponent {
 
 }

@@ -17,9 +17,9 @@
   height: 190px;
   width: 190px;
   background-color: #131432;
+  display: flex;
   align-items: center;
   justify-content: center;
-  display: flex;
 
   & _content {
     height: 200px;

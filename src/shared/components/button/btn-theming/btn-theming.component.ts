@@ -45,8 +45,8 @@ import {BtnThemingService} from "./btn-theming.service";
 })
 export class BtnThemingComponent {
 
-  @Input() visible: boolean = false;
-  @Input() disabled: boolean = false;
+  @Input() visible!: boolean ;
+  @Input() disabled!: boolean ;
   @Input('theming') theme!: string;
 
   @Output() disabledChanges=new EventEmitter<void>();
@@ -54,7 +54,7 @@ export class BtnThemingComponent {
   $audioThemes=inject(BtnThemingService)
 
   $router=inject(Router);
-  selected = this.$themeStore.isAlreadyChosen(this.theme);
+  selected = false;
 
 
   handleSelect() {

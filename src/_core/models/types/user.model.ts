@@ -15,13 +15,13 @@ export class User implements IUser {
   score: number;
   theme:string;
 
-  constructor(name: string, nickname: string, avatarUrl: string,theme:any) {
+  constructor(name: string, nickname: string, avatarUrl: string,theme:string) {
     this.name = name;
     this.nickname = nickname;
     this.avatarUrl = `url(${avatarUrl})`;
     this.src = `${avatarUrl}`;
     this.score=0;
-    this.theme=theme
+    this.theme=theme;
   }
 
 }

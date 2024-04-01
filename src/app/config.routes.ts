@@ -1,21 +1,27 @@
 import {Routes} from '@angular/router';
-import {PATH_NAME as Path} from 'src/_core/models/enums/path-name.enum';
+import { PATH_NAME as PATH} from 'src/_core/models/enums/path-name.enum';
 
 export const routes: Routes = [
   {
-    path: Path.EMPTY,
-    redirectTo: Path.HOME,
+    path: PATH.EMPTY,
+    // redirectTo: PATH.HOME,
+    // redirectTo:PATH.FACE_TO_FACE_INTRO ,
+    redirectTo: PATH.FOUR_SUCCESSION,
     pathMatch: "full"
   },
   {
-    path: Path.HOME,
+    path: PATH.HOME,
     loadChildren: () => import('src/_core/routes/navigation-home.routes')
   },
   {
-    path: Path.WINNING_POINTS,
+    path: PATH.WINNING_POINTS,
     loadChildren: () => import('src/_core/routes/navigation-winning-point.routes')
   }, {
-    path: Path.FOUR_SUCCESSION,
+    path: PATH.FOUR_SUCCESSION,
     loadChildren: () => import('src/_core/routes/navigation-four-succession.routes')
+  },
+  {
+    path:PATH.FACE_TO_FACE,
+    loadChildren:()=> import('src/_core/routes/navigation-face-to-face.routes')
   }
 ];
