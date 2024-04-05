@@ -1,16 +1,27 @@
 <div class="container">
   <section class="player_box-left">
-    <qpuc-player-card [user]="players[0]"></qpuc-player-card>
-    <div>SCORE</div>
+    <qpuc-player-card [user]="players[0]">
+      <button class="player_box-btn" mat-raised-button color="primary">SCORE</button>
+    </qpuc-player-card>
   </section>
-  <section>
-    @for (data of [4, 3, 2, 1]; track $index) {
-      <qpuc-rectangle>{{ data }}</qpuc-rectangle>
+  <section class="player_box-middle">
+    <button class="player_box-buzzer"
+            mat-raised-button
+            color="warn"
+            (click)="start()">{{ buttonName() }}
+    </button>
+    @for (data of [1, 2, 3, 4]; track $index) {
+      <qpuc-rectangle #rectangle
+                      class="rectangle" [class]="'rectangle'+$index"
+                      (timerEnd)="pursuit($index)">
+        {{ data }}
+      </qpuc-rectangle>
     }
   </section>
   <section class="player_box-right">
-    <qpuc-player-card [user]="players[1]"></qpuc-player-card>
-    <div>SCORE</div>
+    <qpuc-player-card [user]="players[1]">
+      <button class="player_box-btn" mat-raised-button color="primary">SCORE</button>
+    </qpuc-player-card>
   </section>
 
 </div>
