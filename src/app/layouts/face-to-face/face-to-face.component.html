@@ -1,1 +1,16 @@
-<p>face-to-face works!</p>
+<div class="container">
+  <section class="player_box-left">
+    <qpuc-player-card [user]="players[0]"></qpuc-player-card>
+    <div>SCORE</div>
+  </section>
+  <section>
+    @for (data of [4, 3, 2, 1]; track $index) {
+      <qpuc-rectangle>{{ data }}</qpuc-rectangle>
+    }
+  </section>
+  <section class="player_box-right">
+    <qpuc-player-card [user]="players[1]"></qpuc-player-card>
+    <div>SCORE</div>
+  </section>
+
+</div>
