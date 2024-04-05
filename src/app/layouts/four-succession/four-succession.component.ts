@@ -7,6 +7,9 @@ import {HexagonComponent} from "../../../shared/components/hexagon/hexagon.compo
 import {ThemeStoreService} from "../../../shared/store/theme-store.service";
 import {Router} from "@angular/router";
 import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
+import {PlayerCardComponent} from "../../../shared/components/player-card/player-card.component";
+import {IUser} from "../../../_core/models/types/user.model";
+import {PlayerAll} from "../../../_core/models/types/player.model";
 
 @Component({
   selector: 'qpuc-four-succession',
@@ -14,19 +17,20 @@ import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigatio
   imports: [
     NgStyle,
     MatButton,
-    HexagonComponent
+    HexagonComponent,
+    PlayerCardComponent
   ],
   templateUrl: './four-succession.component.html',
   styleUrl: './four-succession.component.scss'
 })
-export class FourSuccessionComponent implements OnDestroy{
-  $storePlayer=inject(PlayerStoreService)
-  $storeTheme=inject(ThemeStoreService)
-  $router=inject(Router);
-    player =this.$storePlayer.players.at(this.$storeTheme.index)
+export class FourSuccessionComponent implements OnDestroy {
+  $storePlayer = inject(PlayerStoreService)
+  $storeTheme = inject(ThemeStoreService)
+  $router = inject(Router);
+  player: IUser = this.$storePlayer.players.at(this.$storeTheme.index)|| PlayerAll[0];
   timer!: any;
   numberPlayer = signal(0)
-  currentPoint  = signal<number>(0);
+  currentPoint = signal<number>(0);
   maxPoint: number = 0
   $audioService = inject(FourSuccessionAudioService)
   isStart = signal(false)
@@ -81,8 +85,8 @@ export class FourSuccessionComponent implements OnDestroy{
   }
 
   async next() {
-    const index=this.$storeTheme.index;
-    if(index<4)
+    const index = this.$storeTheme.index;
+    if (index < 4)
       await this.$router.navigate([`${NAV.FOUR_SUCCESSION_THEMES}/${index}`])
     else
       await this.$router.navigate([`${NAV.FACE_TO_FACE_INTRO}`])
@@ -91,7 +95,7 @@ export class FourSuccessionComponent implements OnDestroy{
   ngOnDestroy(): void {
     this.numberPlayer.update(v => v + 1)
     this.currentPoint.set(0);
-    this.maxPoint=0;
+    this.maxPoint = 0;
     this.isStart.set(false)
     this.isEnd.set(false)
   }
