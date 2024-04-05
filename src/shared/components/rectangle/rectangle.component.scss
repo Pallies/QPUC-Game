@@ -1,7 +1,6 @@
 
 .container {
   position: relative;
-  margin-left: 25px;
   height: 200px;
   width: 140px;
   color: #299cce;
@@ -17,7 +16,6 @@
   width: 130px;
   background-color: #131432;
   display: flex;
-  transform: rotate(180deg);
   align-items: center;
   justify-content: center;
   z-index: 2;
@@ -29,8 +27,10 @@
     height: 190px;
     width: 130px;
     color: #299cce;
-    --height-after: 100%
-     ;
+    --height-after: 100%;
+    transform: rotate(180deg);
+    z-index: -1;
+
     &::after {
       content: '';
       position: absolute;
