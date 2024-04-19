@@ -64,6 +64,7 @@ export class FourSuccessionComponent implements OnDestroy {
 
   reset() {
     this.currentPoint.set(0)
+    this.$audioService.falseAnswer()
   }
 
   increment() {
