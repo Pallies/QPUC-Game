@@ -10,7 +10,7 @@ import {ThemeStoreService} from "../../../shared/store/theme-store.service";
 import {MatButton} from "@angular/material/button";
 import {BtnNextComponent} from "../../../shared/components/button/btn-next/btn-next.component";
 import {NAVIGATION_PATH} from "../../../_core/models/enums/path-navigation.enum";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {outInAnimation} from "../../../assets/animations/out-in.animation";
 
 @Component({
   selector: 'qpuc-theme-four-succession',
@@ -21,17 +21,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     MatButton,
     BtnNextComponent,
   ], animations: [
-    trigger('out-in', [
-      state('out', style({
-        visibility: 'hidden',
-        transform: 'translateX(-50%) scale(0.25)'
-      })),
-      state('in', style({
-        visibility: 'visible',
-      })),
-      transition('out=>in',
-        [animate('.5s')])
-    ])
+    outInAnimation
   ],
   template: `
     <div class="container">
