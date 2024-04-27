@@ -17,25 +17,15 @@ export class WinLooseButtonService {
   pointCounterPlayerOne = signal(0);
   pointCounterPlayerTwo = signal(0);
 
-  win() {
-    this.$audio.rightAnswer()
-    this.awarsPoints(this.$countDown.currentIndex)
+  init() {
     this.$turn.nextTurn();
-    this.init();
+    this.$rectangle.init()
+    this.$animate.init();
+    this.$countDown.init();
   }
-
-  loose() {
-    this.$audio.falseAnswer();
-    this.$animate.falseAnswer(this.$countDown.currentIndex)
-  }
-
   start() {
     this.$audio.start()
     this.$rectangle.activate(this.$countDown.currentIndex)
-  }
-
-  poursuit() {
-    this.$rectangle.activate(this.$countDown.decrement());
   }
 
   stop() {
@@ -43,16 +33,30 @@ export class WinLooseButtonService {
     this.$rectangle.stop(this.$countDown.currentIndex)
   }
 
-  init() {
-    this.$rectangle.init()
-    this.$animate.init();
-    this.$countDown.init();
+  async poursuit(): Promise<boolean> {
+    this.$rectangle.activate(this.$countDown.decrement())
+    if (this.$countDown.currentIndex < 0) {
+      this.end()
+      return Promise.resolve(true)
+    }
+    return Promise.resolve(false)
   }
-  awarsPoints(index:number){
-    this.$animate.isLeftOrRight(index)?
-      this.pointCounterPlayerOne.update(v=>v+(++index)):
-      this.pointCounterPlayerTwo.update(v=>v+(++index));
-    console.log(this.pointCounterPlayerOne())
-    console.log(this.pointCounterPlayerTwo())
+  win() {
+    this.$audio.rightAnswer()
+    this.awarsPoints(this.$countDown.currentIndex)
+    this.init();
+  }
+  awarsPoints(index: number) {
+    this.$animate.isLeftOrRight(index) ?
+      this.pointCounterPlayerOne.update(v => v + (++index)) :
+      this.pointCounterPlayerTwo.update(v => v + (++index));
+  }
+
+  loose() {
+    this.$audio.falseAnswer();
+    this.$animate.falseAnswer(this.$countDown.currentIndex)
+  }
+  end() {
+    this.init()
   }
 }

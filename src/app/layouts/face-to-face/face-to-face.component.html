@@ -1,26 +1,68 @@
 <div class="container">
   <section class="player_box-left">
-    <qpuc-player-card [user]="players[0]">
-      <button class="player_box-btn" mat-raised-button color="primary">SCORE</button>
+    <qpuc-player-card
+      [user]="players[0]"
+      [user2]="players[2]"
+      [score]="$winLooseService.pointCounterPlayerOne"
+    >
+      <qpuc-btn-take-leave
+        class="player_box-btn"
+        [visibility]="$turnPlayer.isTurnPlayerOne() && !choiceBeetweenTakeLeave()"
+        (choice)="choiceBeetweenTakeLeave.set(true);isStarted.set(false)"
+        [left]="true"></qpuc-btn-take-leave>
     </qpuc-player-card>
   </section>
   <section class="player_box-middle">
+
     <button class="player_box-buzzer"
             mat-raised-button
             color="warn"
-            (click)="start()">{{ buttonName() }}
+            [visibility]="isStarted() != undefined && !viewButtonWinLoose()"
+            (click)="startOrStop()"
+    >{{ buttonName() }}
     </button>
+    <div
+      [style]="{'margin-top':'8rem'}"
+      [visibility]=" !isStarted()&& viewButtonWinLoose()">
+      <button
+        mat-raised-button
+        [style]="{'margin':'0 2rem'}"
+        color="primary"
+        (click)=" win() "
+      >Gagner
+      </button>
+      <button
+        mat-raised-button
+        [style]="{'margin':'0 2rem'}"
+        color="primary"
+        (click)="loose()"
+      >Perdu
+      </button>
+    </div>
+
     @for (data of [1, 2, 3, 4]; track $index) {
       <qpuc-rectangle #rectangle
+                      [@translate]="$animation._takeOrLeave[$index]() == undefined ? 'middle'
+                      : $animation._takeOrLeave[$index]() ? 'left'
+                        : 'right'"
                       class="rectangle" [class]="'rectangle'+$index"
-                      (timerEnd)="pursuit($index)">
+                      (next)="pursuit()">
         {{ data }}
       </qpuc-rectangle>
     }
   </section>
   <section class="player_box-right">
-    <qpuc-player-card [user]="players[1]">
-      <button class="player_box-btn" mat-raised-button color="primary">SCORE</button>
+    <qpuc-player-card
+      [user]="players[1]"
+      [user2]="players[3]"
+      [score]="$winLooseService.pointCounterPlayerTwo"
+    >
+      <qpuc-btn-take-leave
+        class="player_box-btn"
+        [visibility]="$turnPlayer.isTurnPlayerTwo() && !choiceBeetweenTakeLeave()"
+        (choice)="choiceBeetweenTakeLeave.set(true);isStarted.set(false)"
+        [right]="true">
+      </qpuc-btn-take-leave>
     </qpuc-player-card>
   </section>
 

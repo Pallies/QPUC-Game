@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FaceToFaceComponent} from "../../layouts/face-to-face/face-to-face.component";
+import {PlayerStoreService} from "../../../shared/store/player-store.service";
 
 @Component({
   selector: 'qpuc-face-to-face.container',
@@ -12,6 +13,11 @@ import {FaceToFaceComponent} from "../../layouts/face-to-face/face-to-face.compo
   `,
   styles: ``
 })
-export class FaceToFaceContainer {
+export class FaceToFaceContainer implements OnInit {
+  $players = inject(PlayerStoreService)
 
+
+  ngOnInit(): void {
+    this.$players.orderByScore();
+  }
 }

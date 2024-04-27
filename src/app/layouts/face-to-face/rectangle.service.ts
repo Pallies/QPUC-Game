@@ -16,9 +16,8 @@ export class RectangleService {
 
 
   activate(index: number ) {
-    if (index >= 0) {
+    if (index < 0) return
       this._component[index].active = true
-    }
   }
 
   stop(index:number) {

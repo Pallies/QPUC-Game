@@ -35,7 +35,7 @@ export class RectangleDirective implements OnChanges {
         this.next.emit(true);
       }
       this.el.nativeElement.style.setProperty('--height-after', (--this.height + '%'));
-    }, 100);
+    }, 97);
   }
 
   private cancelTimer() {

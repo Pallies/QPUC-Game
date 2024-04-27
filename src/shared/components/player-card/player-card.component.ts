@@ -1,7 +1,8 @@
-import {Component, Input, signal, WritableSignal} from '@angular/core';
+import {Component, HostBinding, Input, signal, WritableSignal} from '@angular/core';
 import {MatCardModule} from "@angular/material/card";
 import {IUser} from "../../../_core/models/types/user.model";
 import {MatButton} from "@angular/material/button";
+import {style} from "@angular/animations";
 
 
 @Component({
@@ -15,12 +16,12 @@ import {MatButton} from "@angular/material/button";
     <mat-card class="card">
       <mat-card-header>
         <mat-card-title>
-          <p  class="card_text">
+          <p class="card_text">
             {{ user.name }}
             @if (this.user2) {
               <span class="card_text-left">
              -
-        </span>
+              </span>
               <span class="card_text-right">
             {{ user2?.name }}
             </span>
@@ -31,7 +32,7 @@ import {MatButton} from "@angular/material/button";
       </mat-card-header>
       <div class="card_image-box">
         <img mat-card-image
-             class="card_image-left"
+             [class]="user2?'card_image-left':'card_image-center'"
              [src]="user.src"
              [style.object-position]="user.objectPosition"
              alt="Photo of player">
@@ -60,22 +61,26 @@ import {MatButton} from "@angular/material/button";
 
       </mat-card-actions>
     </mat-card>
-    <ng-container>
+    <ng-container class="container">
       <ng-content/>
     </ng-container>
   `,
   styles: [`
     .card {
+      height: 100%;
+      margin: 15% 0;
       max-width: 800px;
       background-color: #131432;
 
       mat-card-title, &_score-point {
         font-size: xxx-large !important;
       }
-      &_text{
-    text-align: center;
+
+      &_text {
+        text-align: center;
         margin-bottom: 4rem;
       }
+
       /* Applique un dégradé linéaire au texte */
       mat-card-header {
         display: inline-block;
@@ -93,9 +98,12 @@ import {MatButton} from "@angular/material/button";
         justify-content: stretch;
       }
 
-      &_image,&_text {
+      &_image, &_text {
+        &-center{
+          transform: scale(2) translateX(1.5%) !important;
+        }
         &-left {
-          transform: scale(2) translateX(5%)!important;
+          transform: scale(2) translateX(5%) !important;
         }
 
         &-right {

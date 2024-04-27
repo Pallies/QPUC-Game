@@ -6,7 +6,6 @@ import {FaceToFaceAudioService} from "./face-to-face-audio.service";
 })
 export class AnimationManagementService {
   _takeOrLeave: WritableSignal<boolean | undefined>[] = [signal(undefined), signal(undefined), signal(undefined), signal(undefined)];
-  $audio = inject(FaceToFaceAudioService)
 
   init() {
     this._takeOrLeave.forEach(i => i.set(undefined));

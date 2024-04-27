@@ -19,6 +19,10 @@ export class FaceToFaceAudioService {
     this.$audio.loadAudioFile(AUDIO.QUALIFIED)
       .then(a => a.start())
   }
+  falseAnswer(): void {
+    this.$audio.loadAudioFile(AUDIO.FALSE_ANSWER)
+      .then(a => a.start())
+  }
 
   start(): void {
     this.$audio.loadAudioFile(AUDIO.DECREMENT)
@@ -32,5 +36,8 @@ export class FaceToFaceAudioService {
   stop(): void {
     this.audioCount.stop()
     this.answer()
+  }
+  endGame(){
+    this.$audio.loadAudioFile(AUDIO.END_GAME)
   }
 }
