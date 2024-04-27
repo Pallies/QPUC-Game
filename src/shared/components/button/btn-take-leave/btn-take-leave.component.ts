@@ -2,7 +2,6 @@ import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/c
 import {MatButton} from "@angular/material/button";
 import {TakeOrLeaveService} from "./take-or-leave.service";
 import {NgStyle} from "@angular/common";
-import {VisibilityDirective} from "../../../../_core/directives/visibility.directive";
 
 @Component({
   selector: 'qpuc-btn-take-leave',

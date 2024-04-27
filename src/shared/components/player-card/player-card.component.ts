@@ -1,8 +1,8 @@
-import {Component, HostBinding, Input, signal, WritableSignal} from '@angular/core';
+import {Component,  Input, signal, WritableSignal} from '@angular/core';
 import {MatCardModule} from "@angular/material/card";
 import {IUser} from "../../../_core/models/types/user.model";
 import {MatButton} from "@angular/material/button";
-import {style} from "@angular/animations";
+
 
 
 @Component({
@@ -55,7 +55,7 @@ import {style} from "@angular/animations";
             <span>  {{ score() }} </span>
           </p>
           <div class="card_img-box">
-            <img mat-card-image>
+            <img mat-card-image alt="desk" src="">
           </div>
         </div>
 

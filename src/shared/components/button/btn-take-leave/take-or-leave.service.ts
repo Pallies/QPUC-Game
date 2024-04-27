@@ -1,6 +1,5 @@
 import {inject, Injectable, signal, WritableSignal} from '@angular/core';
 import {AnimationManagementService} from "../../../../app/layouts/face-to-face/animation-management.service";
-import {AudioService} from "../../../../_core/services/audio.service";
 import {FaceToFaceAudioService} from "../../../../app/layouts/face-to-face/face-to-face-audio.service";
 
 @Injectable()
