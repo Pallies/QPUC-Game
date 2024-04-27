@@ -5,6 +5,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {ThemeStoreService} from "../../../store/theme-store.service";
 import {Router} from "@angular/router";
 import {BtnThemingService} from "./btn-theming.service";
+import {VisibilityDirective} from "../../../../_core/directives/visibility.directive";
 
 @Component({
   selector: 'qpuc-btn-theming',
@@ -12,7 +13,8 @@ import {BtnThemingService} from "./btn-theming.service";
   imports: [
     MatButtonModule,
     NgStyle,
-    NgClass
+    NgClass,
+    VisibilityDirective
   ], animations: [
     trigger('selected', [
       state('select', style({
@@ -28,14 +30,18 @@ import {BtnThemingService} from "./btn-theming.service";
     ]),
   ],
   template: `
-    <div class="container" [ngStyle]="{'visibility':visible?'hidden':'visible'}">
+    <div class="container"
+         [visibility]="!visible"
+    >
       <button mat-stroked-button color="accent"
               class="box"
               [@selected]="selected?'select':'not'"
               [disabled]="disabled"
               (click)="handleSelect();selected=true"
       >
-        {{ theme }}
+        <p>{{ theme.split('et')[0]}}</p>
+        <p>et</p>
+        <p>{{ theme.split('et')[1]}}</p>
         <div class="box_content">
         </div>
       </button>

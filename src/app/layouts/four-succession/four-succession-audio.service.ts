@@ -14,7 +14,10 @@ export class FourSuccessionAudioService {
     this.$audio.loadAudioFile(AUDIO.POINT_VALIDE)
       .then(a => a.start())
   }
-
+falseAnswer(): void {
+  this.$audio.loadAudioFile(AUDIO.FALSE_ANSWER)
+    .then(a=>a.start())
+}
   qualified(): void {
     this.$audio.loadAudioFile(AUDIO.QUALIFIED)
       .then(a => a.start())

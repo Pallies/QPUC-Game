@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, signal} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {RectangleDirective} from "./rectangle.directive";
 
 @Component({
@@ -8,15 +8,16 @@ import {RectangleDirective} from "./rectangle.directive";
   providers: [RectangleDirective],
   template: `
     <div class="container">
-      <div class="box" (click)="active=!active">
+      <div class="box">
         <ng-content/>
-        <div [qpucRectangle]="active" (next)="timerEnd.emit()" class="box_content"></div>
+        <div [qpucRectangle]="active"
+             (next)="next.emit()" class="box_content"></div>
       </div>
     </div>
   `,
   styleUrl: './rectangle.component.scss'
 })
 export class RectangleComponent {
-  @Output() timerEnd = new EventEmitter<void>();
-  @Input() active = false;
+  @Output() next = new EventEmitter<void>();
+  @Input() active:boolean|undefined = false;
 }
