@@ -116,7 +116,6 @@ export class ThemeFourSuccessionComponent implements OnInit {
     this.lastTheme = this.$storePlayers.players[3].theme as string;
   }
   isUserTheme(theme:string){
-    console.log(this.user.theme==theme,this.user.theme==theme && this.index!=2 ?true:this.lastTheme!=theme,' ',theme)
      return this.user.theme==theme && (this.index!=2 ?true:this.lastTheme!=theme);
   }
   protected readonly Nav = NAVIGATION_PATH;

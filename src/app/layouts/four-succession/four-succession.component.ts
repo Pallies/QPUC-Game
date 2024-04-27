@@ -10,6 +10,8 @@ import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigatio
 import {PlayerCardComponent} from "../../../shared/components/player-card/player-card.component";
 import {IUser} from "../../../_core/models/types/user.model";
 import {PlayerAll} from "../../../_core/models/types/player.model";
+import {CounterPointService} from "./counter-point.service";
+import {VisibilityDirective} from "../../../_core/directives/visibility.directive";
 
 @Component({
   selector: 'qpuc-four-succession',
@@ -18,7 +20,8 @@ import {PlayerAll} from "../../../_core/models/types/player.model";
     NgStyle,
     MatButton,
     HexagonComponent,
-    PlayerCardComponent
+    PlayerCardComponent,
+    VisibilityDirective
   ],
   templateUrl: './four-succession.component.html',
   styleUrl: './four-succession.component.scss'
@@ -26,28 +29,25 @@ import {PlayerAll} from "../../../_core/models/types/player.model";
 export class FourSuccessionComponent implements OnDestroy {
   $storePlayer = inject(PlayerStoreService)
   $storeTheme = inject(ThemeStoreService)
+  $counter=inject(CounterPointService);
+  $audioService = inject(FourSuccessionAudioService)
   $router = inject(Router);
-  player: IUser = this.$storePlayer.players.at(this.$storeTheme.index)|| PlayerAll[0];
+  player: IUser = this.$storePlayer.players.at(this.$storeTheme.index) || PlayerAll[0];
   timer!: any;
   numberPlayer = signal(0)
-  currentPoint = signal<number>(0);
-  maxPoint: number = 0
-  $audioService = inject(FourSuccessionAudioService)
+
   isStart = signal(false)
   isEnd = signal(false)
   isEnd$ = computed<boolean>(() => {
-    return this.currentPoint() == 4 || this.isEnd();
+    return this.$counter.isEnd() || this.isEnd();
   })
 
   constructor() {
     effect(() => {
-      if (this.currentPoint() > this.maxPoint) {
-        this.maxPoint = this.currentPoint()
-      }
-      if (this.currentPoint() == 4) {
+      if (this.$counter.isEnd()) {
         this.$audioService.qualified()
         this.end()
-      } else if (this.currentPoint() > 0) {
+      } else if (this.$counter.currentPoint() > 0) {
         this.$audioService.rightAnswer()
       }
     })
@@ -63,26 +63,19 @@ export class FourSuccessionComponent implements OnDestroy {
   }
 
   reset() {
-    this.currentPoint.set(0)
+    this.$counter.falseAnswer()
     this.$audioService.falseAnswer()
   }
 
   increment() {
-    this.currentPoint.update(v => v + 1)
+    this.$counter.rigthAnswer()
   }
 
   end() {
     this.$audioService.stop();
     clearTimeout(this.timer);
+    this.$storePlayer.players[this.$storeTheme.index].score = this.$counter.allocationPoints()
     this.$storeTheme.nextPlayer();
-
-    // this.players = this.players.map((p, i, arr) => {
-    //   if (i == this.numberPlayer()) {
-    //     p.score = this.maxPoint
-    //   }
-    //   return p
-    // })
-
   }
 
   async next() {
@@ -95,8 +88,7 @@ export class FourSuccessionComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.numberPlayer.update(v => v + 1)
-    this.currentPoint.set(0);
-    this.maxPoint = 0;
+    this.$counter.init()
     this.isStart.set(false)
     this.isEnd.set(false)
   }

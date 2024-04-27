@@ -21,4 +21,7 @@ export class PlayerStoreService {
   save(players: IUser[]):void {
     this._players.next(players);
   }
+  orderByScore():IUser[]{
+    return this.players.sort((a,b) => b.score - a.score);
+  }
 }
