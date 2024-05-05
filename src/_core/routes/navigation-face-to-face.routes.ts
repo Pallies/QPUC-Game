@@ -2,7 +2,6 @@ import {Routes} from "@angular/router";
 import {PATH_NAME as PATH} from "../models/enums/path-name.enum";
 import {IntroFaceToFaceComponent} from "../../app/containers/face-to-face/intro-face-to-face.component";
 import {FaceToFaceContainer} from "../../app/containers/face-to-face/face-to-face.container";
-import {NAVIGATION_PATH} from "../models/enums/path-navigation.enum";
 
 export default [
   {

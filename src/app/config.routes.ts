@@ -4,9 +4,7 @@ import { PATH_NAME as PATH} from 'src/_core/models/enums/path-name.enum';
 export const routes: Routes = [
   {
     path: PATH.EMPTY,
-    // redirectTo: PATH.HOME,
-    // redirectTo:PATH.FACE_TO_FACE_INTRO ,
-    redirectTo: PATH.FOUR_SUCCESSION,
+    redirectTo: PATH.HOME,
     pathMatch: "full"
   },
   {
@@ -23,5 +21,10 @@ export const routes: Routes = [
   {
     path:PATH.FACE_TO_FACE,
     loadChildren:()=> import('src/_core/routes/navigation-face-to-face.routes')
-  }
+  },
+  {
+    path: '**',
+    redirectTo: PATH.HOME,
+    pathMatch: "full"
+  },
 ];

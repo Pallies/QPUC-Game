@@ -27,4 +27,5 @@ export class WinningPointsService {
       this.playersWin.push(last)
     }
   }
+
 }

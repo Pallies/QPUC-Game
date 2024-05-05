@@ -23,7 +23,7 @@ import {MatButton} from "@angular/material/button";
              -
               </span>
               <span class="card_text-right">
-            {{ user2?.name }}
+            {{ user2?user2.name:user.name }}
             </span>
             }
           </p>
@@ -39,8 +39,8 @@ import {MatButton} from "@angular/material/button";
         @if (this.user2) {
           <img mat-card-image
                class="card_image-right"
-               [src]="user2?.src"
-               [style.object-position]="user2?.objectPosition"
+               [src]="user2?user2.src:user.src"
+               [style.object-position]="user2? user2.objectPosition:user.objectPosition"
                alt="Photo of player">
         }
       </div>
@@ -55,7 +55,7 @@ import {MatButton} from "@angular/material/button";
             <span>  {{ score() }} </span>
           </p>
           <div class="card_img-box">
-            <img mat-card-image alt="desk" src="">
+            <img mat-card-image >
           </div>
         </div>
 

@@ -21,32 +21,27 @@ import {RouterLink} from "@angular/router";
         </span>
     </button>
   `,
-  styles: `.button {
+  styles: [`.button {
     color: #131432 !important;
-
     &-large {
       font-size: xxx-large;
       margin: 1rem;
       padding: 2rem;
-
       .icon {
         font-size: 2rem;
         transform: translate(-25%, -25%);
       }
     }
-
     &-medium {
       font-size: x-large;
       margin-top: .5rem;
       padding: 1rem;
-
       .icon {
         font-size: 25px;
       }
     }
   }
-
-  `
+  `]
 })
 export class BtnNextComponent {
   @Input() name = "Start";
