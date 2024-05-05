@@ -6,9 +6,21 @@
 <div class="footer">
   @if ($service.deskWinning$() < 3) {
 
-    <button *ngIf="$service.point$.getValue()==1" mat-raised-button color="primary">1 Points</button>
-    <button *ngIf="$service.point$.getValue()==2" mat-raised-button color="accent">2 Points</button>
-    <button *ngIf="$service.point$.getValue()==3" mat-raised-button color="warn">3 Points</button>
+    <button *ngIf="$service.point$.getValue()==1" mat-raised-button color="primary"
+            (click)="$service.point$.next(2)">
+      1
+      Points
+    </button>
+    <button *ngIf="$service.point$.getValue()==2" mat-raised-button color="accent"
+            (click)="$service.point$.next(3)">
+      2
+      Points
+    </button>
+    <button *ngIf="$service.point$.getValue()==3" mat-raised-button color="warn"
+            (click)="$service.point$.next(1)">
+      3
+      Points
+    </button>
   } @else {
     <qpuc-btn-next name="Suite" size="medium" [routerLink]="Nav.FOUR_SUCCESSION_INTRO"/>
   }
