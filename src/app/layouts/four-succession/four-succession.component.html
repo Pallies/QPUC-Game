@@ -21,7 +21,7 @@
                   color="primary"
                   [visibility]="isStart()&&isEnd$()&&numberPlayer()<2"
                   (click)="next()"
-          >PROCHAIN JOUEUR
+          >{{ $storeTheme.index==4?"NEXT":"PROCHAIN JOUEUR" }}
           </button>
         }
 

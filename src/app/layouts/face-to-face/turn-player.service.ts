@@ -1,18 +1,24 @@
-import {Injectable, signal, WritableSignal} from "@angular/core";
+import {Injectable} from "@angular/core";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TurnPlayerService {
 
-  _turn$: WritableSignal<number> = signal(1);
+  _turn$: BehaviorSubject<number> =  new BehaviorSubject(1);
+  _end$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  get turn$() {
-    return this._turn$();
+  get turn$(): number {
+    return this._turn$.getValue();
+  }
+  get isEnd(): boolean {
+    return this._end$.getValue();
   }
 
   nextTurn() {
-    this._turn$.update(v => ++v);
+    this._turn$.next(this._turn$.getValue()+1);
+    this._end$.next(this._turn$.getValue() >= 17);
   }
 
   isTurnPlayerOne() {
@@ -24,6 +30,6 @@ export class TurnPlayerService {
   }
 
   private _pair(): boolean {
-    return (this._turn$() % 2) === 0;
+    return (this._turn$.getValue() % 2) === 0;
   }
 }

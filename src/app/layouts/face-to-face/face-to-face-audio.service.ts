@@ -39,5 +39,6 @@ export class FaceToFaceAudioService {
   }
   endGame(){
     this.$audio.loadAudioFile(AUDIO.END_GAME)
+      .then(a => a.start())
   }
 }

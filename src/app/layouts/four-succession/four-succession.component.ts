@@ -35,7 +35,6 @@ export class FourSuccessionComponent implements OnDestroy {
   player: IUser = this.$storePlayer.players.at(this.$storeTheme.index) || PlayerAll[0];
   timer!: any;
   numberPlayer = signal(0)
-
   isStart = signal(false)
   isEnd = signal(false)
   isEnd$ = computed<boolean>(() => {
@@ -83,7 +82,7 @@ export class FourSuccessionComponent implements OnDestroy {
     if (index < 4)
       await this.$router.navigate([`${NAV.FOUR_SUCCESSION_THEMES}/${index}`])
     else
-      await this.$router.navigate([`${NAV.FACE_TO_FACE_INTRO}`])
+      await this.$router.navigate([`${NAV.PRESENT_TWO}`])
   }
 
   ngOnDestroy(): void {

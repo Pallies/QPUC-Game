@@ -18,6 +18,9 @@ import {NgIf} from "@angular/common";
 import {RectangleService} from "./rectangle.service";
 import {TurnPlayerService} from "./turn-player.service";
 import {WinLooseButtonService} from "./win-loose-button.service";
+import {CountDownService} from "./count-down.service";
+import {Router} from "@angular/router";
+import {NAVIGATION_PATH as NAV} from "../../../_core/models/enums/path-navigation.enum";
 
 
 @Component({
@@ -38,10 +41,11 @@ import {WinLooseButtonService} from "./win-loose-button.service";
 export class FaceToFaceComponent implements AfterViewInit {
   $storePlayers = inject(PlayerStoreService);
   $animation = inject(AnimationManagementService);
-
+  $countDown = inject(CountDownService)
   $rectangle = inject(RectangleService);
   $turnPlayer = inject(TurnPlayerService);
   $winLooseService = inject(WinLooseButtonService)
+  $router = inject(Router);
   players = this.$storePlayers.players;
 
   @ViewChildren('rectangle') rectangles!: QueryList<RectangleComponent>
@@ -50,10 +54,10 @@ export class FaceToFaceComponent implements AfterViewInit {
   buttonName = computed<string>(() => this.isStarted() ? "Stop" : "Commencez")
   viewButtonWinLoose = signal(false)
 
+
   pursuit() {
-    this.$winLooseService.poursuit().then(end=> {
-      console.log(end)
-      if (end){
+    this.$winLooseService.poursuit().then(end => {
+      if (end) {
         this.init()
       }
     });
@@ -95,9 +99,9 @@ export class FaceToFaceComponent implements AfterViewInit {
     this.viewButtonWinLoose.set(false)
   }
 
-  endTurn() {
-  }
-
-  endGame() {
+  handlePresents() {
+    let router = this.$turnPlayer.turn$ == 17 ? `${NAV.PRESENT_THREE}` : this.$turnPlayer.turn$ == 18 ?`${NAV.PRESENT_FOUR}`:`${NAV.PRESENT_ALL}`;
+    this.$turnPlayer.nextTurn();
+    this.$router.navigate([router]);
   }
 }

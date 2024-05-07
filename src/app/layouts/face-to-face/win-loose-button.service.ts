@@ -22,6 +22,8 @@ export class WinLooseButtonService {
     this.$rectangle.init()
     this.$animate.init();
     this.$countDown.init();
+    if(this.$turn.isEnd)
+      this.$audio.endGame()
   }
   start() {
     this.$audio.start()

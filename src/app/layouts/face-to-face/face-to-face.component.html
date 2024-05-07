@@ -5,11 +5,13 @@
       [user2]="players[2]"
       [score]="$winLooseService.pointCounterPlayerOne"
     >
+
       <qpuc-btn-take-leave
         class="player_box-btn"
-        [visibility]="$turnPlayer.isTurnPlayerOne() && !choiceBeetweenTakeLeave()"
+        [visibility]="$turnPlayer.isTurnPlayerOne() && !choiceBeetweenTakeLeave()&&!$turnPlayer.isEnd"
         (choice)="choiceBeetweenTakeLeave.set(true);isStarted.set(false)"
         [left]="true"></qpuc-btn-take-leave>
+
     </qpuc-player-card>
   </section>
   <section class="player_box-middle">
@@ -31,6 +33,7 @@
         (click)=" win() "
       >Gagner
       </button>
+      <span>{{ $countDown.currentIndex + 1 }}</span>
       <button
         mat-raised-button
         [style]="{'margin':'0 2rem'}"
@@ -50,6 +53,13 @@
         {{ data }}
       </qpuc-rectangle>
     }
+    <button class="player_box-buzzer"
+            mat-raised-button
+            color="primary"
+            [visibility]="$turnPlayer.isEnd"
+            (click)="handlePresents()"
+    >"Cadeau"
+    </button>
   </section>
   <section class="player_box-right">
     <qpuc-player-card
@@ -57,12 +67,12 @@
       [user2]="players[3]"
       [score]="$winLooseService.pointCounterPlayerTwo"
     >
-      <qpuc-btn-take-leave
-        class="player_box-btn"
-        [visibility]="$turnPlayer.isTurnPlayerTwo() && !choiceBeetweenTakeLeave()"
-        (choice)="choiceBeetweenTakeLeave.set(true);isStarted.set(false)"
-        [right]="true">
-      </qpuc-btn-take-leave>
+        <qpuc-btn-take-leave
+          class="player_box-btn"
+          [visibility]="$turnPlayer.isTurnPlayerTwo() && !choiceBeetweenTakeLeave()&&!$turnPlayer.isEnd"
+          (choice)="choiceBeetweenTakeLeave.set(true);isStarted.set(false)"
+          [right]="true">
+        </qpuc-btn-take-leave>
     </qpuc-player-card>
   </section>
 

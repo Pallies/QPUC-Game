@@ -23,6 +23,10 @@ export const routes: Routes = [
     loadChildren:()=> import('src/_core/routes/navigation-face-to-face.routes')
   },
   {
+    path:PATH.PRESENTS,
+    loadChildren:()=> import('src/_core/routes/navigation-presents.routes')
+  },
+  {
     path: '**',
     redirectTo: PATH.HOME,
     pathMatch: "full"
